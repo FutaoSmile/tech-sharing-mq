@@ -1,4 +1,4 @@
-package techsharingmq.basic.concept.consumer;
+package com.futao.techsharingmq.basic.concept.consumer;
 
 import com.alibaba.fastjson.JSON;
 import com.futao.techsharingmq.common.Order;

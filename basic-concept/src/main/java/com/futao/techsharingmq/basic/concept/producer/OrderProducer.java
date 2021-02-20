@@ -1,4 +1,4 @@
-package techsharingmq.basic.concept.producer;
+package com.futao.techsharingmq.basic.concept.producer;
 
 import com.futao.techsharingmq.common.Order;
 import com.futao.techsharingmq.common.enums.OrderStatusEnum;

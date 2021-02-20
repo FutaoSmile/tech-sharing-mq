@@ -21,6 +21,7 @@
     <modules>
         <module>basic-concept</module>
         <module>common</module>
+        <module>basic-concept-simple</module>
     </modules>
 
     <properties>

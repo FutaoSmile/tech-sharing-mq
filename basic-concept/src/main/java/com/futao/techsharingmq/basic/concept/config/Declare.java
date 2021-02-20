@@ -1,4 +1,4 @@
-package techsharingmq.basic.concept.config;
+package com.futao.techsharingmq.basic.concept.config;
 
 import org.springframework.amqp.core.*;
 import org.springframework.context.annotation.Bean;
