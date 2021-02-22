@@ -5,8 +5,10 @@ import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.nio.charset.StandardCharsets;
 import java.security.KeyManagementException;
 import java.security.NoSuchAlgorithmException;
+import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
@@ -27,9 +29,6 @@ public class RabbitMqUtils {
         connectionFactory.setUri("amqp://futao:123456789@localhost:5672");
         Connection connection = connectionFactory.newConnection();
         final Channel channel = connection.createChannel();
-        final AMQP.Queue.DeclareOk declareOk = channel.queueDeclare();
-        TimeUnit.MINUTES.sleep(3L);
-
 
         //channel和connection都可以设置shutdow监听器
         channel.addShutdownListener(new ShutdownListener() {
@@ -41,9 +40,27 @@ public class RabbitMqUtils {
         connection.addShutdownListener(new ShutdownListener() {
             @Override
             public void shutdownCompleted(ShutdownSignalException e) {
-
+                log.info("关闭...", e);
             }
         });
+
+        // 监听被return的消息
+        channel.addReturnListener(new ReturnCallback() {
+            @Override
+            public void handle(Return returnMessage) {
+                log.info("消息被退回:{}", returnMessage);
+            }
+        });
+
+        // 定义交换机
+        channel.exchangeDeclare("X_SIMPLE_NO_MATCH_QUEUE", BuiltinExchangeType.TOPIC, false, true, new HashMap<>(0));
+
+        AMQP.BasicProperties basicProperties = new AMQP.BasicProperties();
+        // 向Exchange投递mandatory为true的消息
+        channel.basicPublish("X_NO_MATCH_QUEUE", "", true, false, basicProperties, "123".getBytes(StandardCharsets.UTF_8));
+
+        TimeUnit.MINUTES.sleep(5L);
+
         channel.close();
         connection.close();
     }

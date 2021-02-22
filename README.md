@@ -14,6 +14,9 @@
     * 消费者绑定队列，消费消息
         - 并且演示了消息的手动签收与自动签收
         - 设置消费者的并发数量
+    
+* [basic-concept-simple](./basic-concept-simple) 基础概念，不使用SpringBoot
+* [reliable-delivery](./reliable-delivery) 消息可靠投递
 
 ### # 其他
 
