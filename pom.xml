@@ -23,6 +23,7 @@
         <module>common</module>
         <module>basic-concept-simple</module>
         <module>reliable-delivery</module>
+        <module>rpc-framework</module>
     </modules>
 
     <properties>

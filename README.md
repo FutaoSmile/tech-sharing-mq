@@ -17,6 +17,7 @@
     
 * [basic-concept-simple](./basic-concept-simple) 基础概念，不使用SpringBoot
 * [reliable-delivery](./reliable-delivery) 消息可靠投递
+* [rpc-framework](./rpc-framework) 基于RabbitMQ的RPC框架-demo
 
 ### # 其他
 
