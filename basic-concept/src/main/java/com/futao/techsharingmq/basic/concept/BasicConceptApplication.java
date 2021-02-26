@@ -4,7 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /**
- * @author futao
+ * @author futao <1185172056@qq.com> <https://github.com/FutaoSmile>
  */
 @SpringBootApplication
 public class BasicConceptApplication {
