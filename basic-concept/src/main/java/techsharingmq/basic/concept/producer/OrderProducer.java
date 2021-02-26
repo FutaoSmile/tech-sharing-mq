@@ -8,6 +8,7 @@ import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import java.math.BigDecimal;
 import java.util.stream.IntStream;
 
@@ -27,10 +28,10 @@ public class OrderProducer {
     @Autowired
     private Exchange orderExchangeTopic;
 
-    //    @PostConstruct
+//    @PostConstruct
     public void send() {
         log.info("开始推送订单消息");
-        int msgCount = 100;
+        int msgCount = 1_0000;
         // 小定
         IntStream.rangeClosed(1, msgCount)
                 .forEach(i -> {
