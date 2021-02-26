@@ -1,0 +1,3 @@
+过程是: 客户端在启动的时候让RabbitMQ自动创建一个队列`Q1`，然后将请求信息封装成Message并且携带一个UUID来标识这次请求并且需要在properties中设置replyTo为客户端刚才自动创建的`Q1`，消息经过Exchange转发到Queue，消费Queue的消息，并根据这个queue的replyTo将结果发送到名称为replyTo的Queue，客户端监听这个Queue即可拿到返回数据。
+
+- https://www.rabbitmq.com/tutorials/tutorial-six-java.html

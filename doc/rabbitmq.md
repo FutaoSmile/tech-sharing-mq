@@ -79,7 +79,7 @@
 
 #### 4. 消息持久化0
 
-> 默认情况下，RabbitMQ重启之后，里面定义的Exchange、Queue、Binding和Message都会小事。**除非**你将Exchange和Queue的durable属性设置为true。
+> 默认情况下，RabbitMQ重启之后，里面定义的Exchange、Queue、Binding和Message都会消失。**除非**你将Exchange和Queue的durable属性设置为true。
 
 * 为了保证消息在服务器重启之后依然存在，需要满足以下条件:
     * 在消息投递之前将消息的投递模式`delivery model`设置为持久`2`
