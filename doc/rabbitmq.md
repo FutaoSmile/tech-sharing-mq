@@ -1,8 +1,6 @@
 * JMS
 * AMQP Advanced Queuing Protocol高级消息队列协议
 
-
-
 ### Why RabbitMQ
 
 * 实现了AMQP协议，跨平台
@@ -16,7 +14,7 @@
 
 * 官网: [https://www.rabbitmq.com](https://www.rabbitmq.com)
 * 依赖Erlang，需要现在本地安装好Erlang
-![img.png](img.png)
+  ![img.png](img.png)
 
 ### 信道 Channel
 
@@ -26,22 +24,12 @@
     * 因为对于系统来说，TCP连接的创建和销毁需要昂贵的开销
     * 且OS能提供的TCP连接本身就是有限的
 
-
-
 ### 基础概念
 
 1. 队列
     * 推模式与拉模式
         * 推模式： `basic.consume`命令 RabbitMQ有消息就**实时**推送给应用程序。
         * 拉模式：`basic.get`命令 获取一条，应用程序**定时**拉取。(严重影响吞吐量)
-
-
-
-
-
-
-
-
 
 ### # 其他:
 
@@ -51,7 +39,8 @@
 * Queue中的每条消息都需要消费者basic.ack之后才会从队列中删除
     * 如果RabbitMQ在给某个应用程序发送消息之后没有收到basic.ack，那么将不再继续推送新的消息，之后收到上一条消息的basic.ack。（保护消费者，消费者限流）
 * 拒绝消息：basic.reject，参数requeue，如果设置成了true，RabbitMQ会将该条消息重新放入队列中，否则直接删除。
-    * 对于basic.reject且request为false的消息，为什么不直接签收，而要reject呢，因为签收表示消息符合客户端预期，且被正常处理消费，而basic.reject表示消息不符合客户端预期，被应用程序拒绝，对于这类消息，可以设置死信队列来接收，我们可以分析转发到死信队列的消息来分析系统运行状况，而不是直接忽略了这类消息。
+    *
+    对于basic.reject且request为false的消息，为什么不直接签收，而要reject呢，因为签收表示消息符合客户端预期，且被正常处理消费，而basic.reject表示消息不符合客户端预期，被应用程序拒绝，对于这类消息，可以设置死信队列来接收，我们可以分析转发到死信队列的消息来分析系统运行状况，而不是直接忽略了这类消息。
 * 匿名队列：如果在定义queue时没有指定队列名，RabbitMQ将随机分配一个队列名称，并且在queue.declare中返回。
 * 队列属性:
     * exclusive: true私有队列，只有当前应用程序能够消费消息
@@ -64,9 +53,9 @@
 
 * 交换机类型
     1. fanout 忽略路由键，将消息分发到与Exchange绑定的所有Queue
-    2. direct  完全匹配路由键
+    2. direct 完全匹配路由键
     3. topic 路由键通配符
-        1.  `#`匹配一个或多个
+        1. `#`匹配一个或多个
         2. `*` 只匹配一个词
     4. headers 允许匹配header而非路由键。几乎不用
 
@@ -74,8 +63,7 @@
 
 * 每一个vhost可以拥有自己的Exchange，Queue和权限控制。可以设置某些用户拥有某些vhost的权限。
 * 每个vhost之前不用担心命名冲突，是完全隔离的。
-![img_1.png](img_1.png)
-
+  ![img_1.png](img_1.png)
 
 #### 4. 消息持久化0
 
@@ -89,7 +77,41 @@
 * 【注意】：因为需要将消息持久化到磁盘，所以吞吐量会严重下降（最少降低10倍）。毕竟涉及到磁盘的读写，比直接操作内存要慢非常多。
 
 
+* **不推荐使用事务的原因**：
+  使用MQ就是为了实现快速的异步调用，而使用事务会导致RabbitMQ以同步的方式等待消息确认，这会严重印象RabbitMQ的性能，也违背了使用MQ的初衷。所以不推荐在RabbitMQ中使用事务。代替方式是使用：发送方确认，confirm模式
+    * confirm模式：
+      将Channel设置为Confirm模式之后，在该信道上发布的消息都将被指派一个唯一的ID号，从1开始。消息被正确投递到队列之后（如果队列是持久化队列，将在消息被写入磁盘之后），RabbitMQ将发送一个携带消息ID的ack消息给投递该条消息的生产者，通知该条消息已经被他正确可靠地投递到了队列，且该过程是异步的。如果消息在RabbitMQ内部出现了异常，那么RabbitMQ将发送一个nack消息通知生产者，或者有可能生产者什么消息都收不到（比如在消息投递到MQ的过程了发生了消息丢失了，或者MQ在通知消费者的过程中消息丢失了），对于这类问题，需要生产者处理。
 
-* **不推荐使用事务的原因**： 使用MQ就是为了实现快速的异步调用，而使用事务会导致RabbitMQ以同步的方式等待消息确认，这会严重印象RabbitMQ的性能，也违背了使用MQ的初衷。所以不推荐在RabbitMQ中使用事务。代替方式是使用：发送方确认，confirm模式
-    * confirm模式： 将Channel设置为Confirm模式之后，在该信道上发布的消息都将被指派一个唯一的ID号，从1开始。消息被正确投递到队列之后（如果队列是持久化队列，将在消息被写入磁盘之后），RabbitMQ将发送一个携带消息ID的ack消息给投递该条消息的生产者，通知该条消息已经被他正确可靠地投递到了队列，且该过程是异步的。如果消息在RabbitMQ内部出现了异常，那么RabbitMQ将发送一个nack消息通知生产者，或者有可能生产者什么消息都收不到（比如在消息投递到MQ的过程了发生了消息丢失了，或者MQ在通知消费者的过程中消息丢失了），对于这类问题，需要生产者处理。
-* 
+#### 5. 生产者确认：
+
+1. 通过事务机制
+    * channel.txSelect 开启事务
+        * channel.basicPublish 发送消息
+    * channel.txCommit 提交事务
+    * channel.txRollback 回滚事务
+2. 发送者确认(publisher confirm)机制
+    * 将channel设置为publisherConfirm模式，那么消息都将被设置一个唯一ID(从0递增)，如果消息被正常投递到MQ后(如果满足持久化设置将是在消息持久化之后)
+      发送ack通知到生产者，并且携带消息ID，从而生产者就知道哪些消息成功/失败了。
+
+* 事务机制会阻塞channel发送消息，必须等待前一条消息commit或者rollback，严重影响MQ的性能，这也违背了使用MQ的初衷。
+* 发送者确认机制不会阻塞channel，是异步确认的。
+    * ConfirmListener
+        * handlerAck
+        * handlerNack
+
+#### 6.消费者
+* 压力控制: 设置Qos，表示消费者签收消息之前能够hold的消息数量。channel.basicQos(n)
+    * n = 0表示没有上线
+    * n = 250 默认
+    * n = 1 一般设置为1，推荐
+    
+#### 工具
+* rabbitmqctl 管理操作
+* rabbitmq_plugins 插件管理
+    * rabbitmq插件位置 ~/plugins
+    * 扩展名`.ez`
+    * 启用插件: `rabbitmq_plugins enable xx`
+    * 
+    
+
+* policy可以动态地修改一些属性 （/Admin/Policies）
