@@ -29,3 +29,10 @@
 - [SpringBoot RabbitMQ实现消息可靠投递](https://mp.weixin.qq.com/s?__biz=MzI4NjQyMDkyNg==&mid=2247483871&idx=1&sn=91272e28cd611462215784315b1dec6a&chksm=ebdc7b0edcabf218f37f3fb5641c95759cb0e3c76527c1ee966bc7470a9ac7414636b06ec225&scene=178&cur_album_id=1355248263913472000#rd)
 - [ RabbitMQ死信队列在SpringBoot中的使用 ](https://mp.weixin.qq.com/s?__biz=MzI4NjQyMDkyNg==&mid=2247483884&idx=1&sn=a2be7db538308e3e10296d8a2ea31395&chksm=ebdc7b3ddcabf22bc8efaa64e35b3f2c83cae4e7e1d5ad2eb4c788df8461f67b9480e3486720&scene=178&cur_album_id=1355248263913472000#rd)
 - [ SpringBoot如何做到自动帮我们创建RabbitMQ的Queue和Exchange的？ ](https://mp.weixin.qq.com/s?__biz=MzI4NjQyMDkyNg==&mid=2247483913&idx=1&sn=9eb8f64a140450c28205a57d8166ffd7&chksm=ebdc78d8dcabf1ce5ac41b8b9e703d32d42b35f2e30b75f767fc6c95f01637c2b1c95befebe4&scene=178&cur_album_id=1355248263913472000#rd)
+
+
+### # 书籍
+- 《RabbitMQ实战指南》-朱忠华
+    - 知识面广，但是不算很深入
+    
+- 

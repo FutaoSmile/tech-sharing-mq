@@ -40,7 +40,7 @@
     * 如果RabbitMQ在给某个应用程序发送消息之后没有收到basic.ack，那么将不再继续推送新的消息，之后收到上一条消息的basic.ack。（保护消费者，消费者限流）
 * 拒绝消息：basic.reject，参数requeue，如果设置成了true，RabbitMQ会将该条消息重新放入队列中，否则直接删除。
     *
-    对于basic.reject且request为false的消息，为什么不直接签收，而要reject呢，因为签收表示消息符合客户端预期，且被正常处理消费，而basic.reject表示消息不符合客户端预期，被应用程序拒绝，对于这类消息，可以设置死信队列来接收，我们可以分析转发到死信队列的消息来分析系统运行状况，而不是直接忽略了这类消息。
+  对于basic.reject且request为false的消息，为什么不直接签收，而要reject呢，因为签收表示消息符合客户端预期，且被正常处理消费，而basic.reject表示消息不符合客户端预期，被应用程序拒绝，对于这类消息，可以设置死信队列来接收，我们可以分析转发到死信队列的消息来分析系统运行状况，而不是直接忽略了这类消息。
 * 匿名队列：如果在定义queue时没有指定队列名，RabbitMQ将随机分配一个队列名称，并且在queue.declare中返回。
 * 队列属性:
     * exclusive: true私有队列，只有当前应用程序能够消费消息
@@ -100,18 +100,37 @@
         * handlerNack
 
 #### 6.消费者
+
 * 压力控制: 设置Qos，表示消费者签收消息之前能够hold的消息数量。channel.basicQos(n)
     * n = 0表示没有上线
     * n = 250 默认
     * n = 1 一般设置为1，推荐
-    
+
+#### 7. 惰性队列
+
+- 普通模式队列的消息一般为了吞吐量都将消息存储在内存，导致内存压力很大，那么可以通过设置队列为惰性队列，将消息保存到磁盘，从而减轻内存的压力。
+- 如：1000W条1KB的消息，普通队列会消耗1.2GB的内存，而惰性队列只消耗1.5MB的内存。
+- 设置方式:
+
+```java
+
+Map args=new HashMap<String, Object>();
+args.put("x-queue-mode","lazy");
+channel.queueDeclare(...,args);
+```
+- 当然，使用惰性队列会有一定的性能损耗。
+
 #### 工具
+
 * rabbitmqctl 管理操作
 * rabbitmq_plugins 插件管理
     * rabbitmq插件位置 ~/plugins
     * 扩展名`.ez`
     * 启用插件: `rabbitmq_plugins enable xx`
-    * 
-    
+    *
+
 
 * policy可以动态地修改一些属性 （/Admin/Policies）
+    - 当系统运行过程中需要修改Exchange/Queue等的一些信息，不可能将生产者和消费者停止进行调整。这个时候就可以使用Policy来动态调整。
+    
+

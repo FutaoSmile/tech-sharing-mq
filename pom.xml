@@ -19,11 +19,11 @@
     </parent>
 
     <modules>
-        <module>basic-concept</module>
+        <module>rabbit-basic-concept</module>
         <module>common</module>
-        <module>basic-concept-simple</module>
-        <module>reliable-delivery</module>
-        <module>rpc-framework</module>
+        <module>rabbit-basic-concept-simple</module>
+        <module>rabbit-reliable-delivery</module>
+        <module>rabbit-rpc-framework</module>
     </modules>
 
     <properties>
