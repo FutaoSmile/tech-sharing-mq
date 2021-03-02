@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>basic-concept</artifactId>
+    <artifactId>rabbit-basic-concept</artifactId>
     <description>RabbitMQ基础概念介绍</description>
 
     <properties>

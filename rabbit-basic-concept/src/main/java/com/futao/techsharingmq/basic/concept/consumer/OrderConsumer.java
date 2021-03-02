@@ -23,9 +23,6 @@ import java.io.IOException;
 @Component
 public class OrderConsumer {
 
-    @Autowired
-    private RabbitTemplate rabbitTemplate;
-
     /**
      * 小定消费者
      * 手动签收，并发为1
@@ -35,7 +32,6 @@ public class OrderConsumer {
     @RabbitHandler
     @RabbitListener(queues = "pre-order-queue", ackMode = "AUTO")
     public void preOrderConsumer(Message message, Order order) {
-        // log.info("接收到小定:{}", JSON.toJSONString(message, true));
         log.info("接收到小定:{}", JSON.toJSONString(order, true));
     }
 
@@ -52,7 +48,10 @@ public class OrderConsumer {
         // 进行手动签收
         long deliveryTag = message.getMessageProperties().getDeliveryTag();
         log.info("deliveryTag:{}", deliveryTag);
+        // ack
         channel.basicAck(deliveryTag, false);
+        // nack
+        //channel.basicNack(deliveryTag, false, true);
     }
 
     /**

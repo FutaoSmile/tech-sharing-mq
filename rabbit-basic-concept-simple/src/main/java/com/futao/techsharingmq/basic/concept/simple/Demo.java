@@ -13,11 +13,13 @@ import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TimeoutException;
 
 /**
+ * RabbitMQ简单示例
+ *
  * @author ft <futao@mysteel.com>
  * @date 2021/2/19
  */
 @Slf4j
-public class RabbitMqUtils {
+public class Demo {
 
     public static void connection() throws NoSuchAlgorithmException, KeyManagementException, URISyntaxException, IOException, TimeoutException, InterruptedException {
         ConnectionFactory connectionFactory = new ConnectionFactory();
@@ -66,6 +68,6 @@ public class RabbitMqUtils {
     }
 
     public static void main(String[] args) throws InterruptedException, NoSuchAlgorithmException, KeyManagementException, TimeoutException, URISyntaxException, IOException {
-        RabbitMqUtils.connection();
+        Demo.connection();
     }
 }

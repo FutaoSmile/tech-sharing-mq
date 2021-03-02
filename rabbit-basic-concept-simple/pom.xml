@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>basic-concept-simple</artifactId>
+    <artifactId>rabbit-basic-concept-simple</artifactId>
     <description>RabbitMQ基础概念-不使用SpringBoot</description>
 
     <properties>

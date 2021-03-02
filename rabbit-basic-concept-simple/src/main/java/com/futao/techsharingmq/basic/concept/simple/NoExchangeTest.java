@@ -13,7 +13,7 @@ import java.nio.charset.StandardCharsets;
  */
 public class NoExchangeTest {
     public static void main(String[] args) {
-        Channel channel = MqChannelUtils.getChannel();
+        Channel channel = MqChannelUtils.createChannel();
         try {
             String q_no_exchange = "q_no_exchange";
             channel.queueDeclare(q_no_exchange, false, false, false, null);

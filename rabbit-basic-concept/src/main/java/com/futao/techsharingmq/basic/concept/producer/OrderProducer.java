@@ -31,7 +31,7 @@ public class OrderProducer {
 //    @PostConstruct
     public void send() {
         log.info("开始推送订单消息");
-        int msgCount = 1_0000;
+        int msgCount = 1_00;
         // 小定
         IntStream.rangeClosed(1, msgCount)
                 .forEach(i -> {

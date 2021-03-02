@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>rpc-framework</artifactId>
+    <artifactId>rabbit-rpc-framework</artifactId>
     <packaging>pom</packaging>
     <description>使用RabbitMQ实现RPC框架</description>
 

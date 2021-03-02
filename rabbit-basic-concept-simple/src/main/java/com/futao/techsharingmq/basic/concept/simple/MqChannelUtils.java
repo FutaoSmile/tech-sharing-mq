@@ -11,10 +11,17 @@ import java.security.NoSuchAlgorithmException;
 import java.util.concurrent.TimeoutException;
 
 /**
+ * RabbitMQ工具类
+ *
  * @author ft <futao@mysteel.com>
  * @date 2021/2/23
  */
 public class MqChannelUtils {
+    /**
+     * RabbitMQ连接工程
+     *
+     * @return
+     */
     private static ConnectionFactory connectionFactory() {
         ConnectionFactory connectionFactory = new ConnectionFactory();
         try {
@@ -31,8 +38,12 @@ public class MqChannelUtils {
         return connectionFactory;
     }
 
-
-    public static Channel getChannel() {
+    /**
+     * 创建Channel
+     *
+     * @return
+     */
+    public static Channel createChannel() {
         try {
             Connection connection = MqChannelUtils.connectionFactory().newConnection();
             return connection.createChannel();

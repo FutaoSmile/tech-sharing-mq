@@ -12,7 +12,7 @@ import java.nio.charset.StandardCharsets;
  */
 public class NoQueueTest {
     public static void main(String[] args) throws IOException {
-        Channel channel = MqChannelUtils.getChannel();
+        Channel channel = MqChannelUtils.createChannel();
 
         String x_no_queue = "x_no_queue";
         channel.exchangeDeclare(x_no_queue, BuiltinExchangeType.FANOUT, false, false, false, null);

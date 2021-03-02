@@ -18,7 +18,7 @@ public class AeTest {
     /**
      * 获取Channel
      */
-    private static final Channel CHANNEL = MqChannelUtils.getChannel();
+    private static final Channel CHANNEL = MqChannelUtils.createChannel();
     /**
      * 备份交换机
      */
