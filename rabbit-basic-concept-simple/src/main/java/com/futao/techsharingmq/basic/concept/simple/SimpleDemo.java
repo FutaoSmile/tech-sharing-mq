@@ -66,6 +66,8 @@ public class SimpleDemo {
                     };
                     // 推模式
                     consumerChannel.basicConsume("simple-queue", true, consumer);
+                    // 拉模式
+//                    consumerChannel.basicGet("simple-queue",true);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
