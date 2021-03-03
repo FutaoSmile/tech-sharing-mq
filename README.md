@@ -18,6 +18,7 @@
 * [rabbit-basic-concept-simple](./rabbit-basic-concept-simple) 基础概念，不使用SpringBoot
 * [rabbit-reliable-delivery](./rabbit-reliable-delivery) 消息可靠投递
 * [rabbit-rpc-framework](./rabbit-rpc-framework) 基于RabbitMQ的RPC框架-demo
+- [rabbit-consumer-auto](./rabbit-consumer-auto) 消费者自动签收-自动重试
 
 ### # 其他
 

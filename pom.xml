@@ -24,6 +24,7 @@
         <module>rabbit-basic-concept-simple</module>
         <module>rabbit-reliable-delivery</module>
         <module>rabbit-rpc-framework</module>
+        <module>rabbit-consumer-auto</module>
     </modules>
 
     <properties>
