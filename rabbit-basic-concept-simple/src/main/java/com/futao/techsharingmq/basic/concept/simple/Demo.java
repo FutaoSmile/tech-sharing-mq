@@ -46,11 +46,23 @@ public class Demo {
             }
         });
 
-        // 监听被return的消息
-        channel.addReturnListener(new ReturnCallback() {
+// 监听被return的消息
+channel.addReturnListener(new ReturnCallback() {
+    @Override
+    public void handle(Return returnMessage) {
+        log.info("消息被退回:{}", returnMessage);
+    }
+});
+
+        channel.addConfirmListener(new ConfirmListener() {
             @Override
-            public void handle(Return returnMessage) {
-                log.info("消息被退回:{}", returnMessage);
+            public void handleAck(long deliveryTag, boolean multiple) throws IOException {
+                log.info("消息[{}]投递成功", deliveryTag);
+            }
+
+            @Override
+            public void handleNack(long deliveryTag, boolean multiple) throws IOException {
+                log.info("消息[{}]投递成功", deliveryTag);
             }
         });
 

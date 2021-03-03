@@ -5,6 +5,7 @@ import org.springframework.amqp.AmqpException;
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.core.MessagePostProcessor;
 import org.springframework.amqp.core.ReturnedMessage;
+import org.springframework.amqp.rabbit.connection.CorrelationData;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.config.BeanPostProcessor;
@@ -29,6 +30,18 @@ public class RabbitTemplateEnhance implements BeanPostProcessor {
                 @Override
                 public void returnedMessage(ReturnedMessage returnedMessage) {
                     log.error("消息被退回:{}", returnedMessage);
+                }
+            });
+            // 生产者确认
+            rabbitTemplate.setConfirmCallback(new RabbitTemplate.ConfirmCallback() {
+                @Override
+                public void confirm(CorrelationData correlationData, boolean ack, String cause) {
+                    String correlationDataId = correlationData.getId();
+                    if (ack) {
+                        log.info("消息:[{}]投递成功", correlationDataId);
+                    } else {
+                        log.error("消息[{}]投递失败,cause:[{}]", correlationDataId, cause);
+                    }
                 }
             });
 
