@@ -11,11 +11,11 @@
 * 博客文章
     - [SpringBoot集成kafka全面实战](https://mp.weixin.qq.com/s/JvKPbvJ7q0ypqfF3ARBW7Q)
 
-###    # 
+###        # 
 
 * kafka相比于其他MQ，除了支持持久化还支持流式处理
 
-###    # 
+###        # 
 
 - 如果能在最开始接触这门技术时能看到这本书就好了。
 
@@ -36,6 +36,7 @@
 
 - 一个broker为一个Kafka服务器
 -
+
 多个broker组成集群。集群中有一个broker充当集群控制器的角色，一个Partition可以被分配给多个broker，主broker负责Producer和Consumer的读写，其他broker会Replication消息进行冗余。
 ![img.png](img.png)
 
@@ -64,6 +65,32 @@
 
 * 发送消息的主要过程
   ![img_2.png](img_2.png)
-  
-* 如果没有指定ProducerRecord的分区，那么分区器会根据ProducerRecord来计算一个分区，随后该条消息会被添加到一个批次，同一个批次内的消息会被发送到同一个Topic的同一个Partition，有一个线程专门做这个事情。
+
+*
+
+如果没有指定ProducerRecord的分区，那么分区器会根据ProducerRecord来计算一个分区，随后该条消息会被添加到一个批次，同一个批次内的消息会被发送到同一个Topic的同一个Partition，有一个线程专门做这个事情。
+
 - 如果消息成功写入Kafka，会返回消息的Topic，Partition和Offset。
+
+#### 3.4 顺序保证
+
+- 如果一切正常，生产者顺序投递，Kafka可以保证一个Partition内的消息是有序的，且消费者也会进行顺序消费。
+- 如果`retries`不等于0并且`max.in.flight.requests.per.connection`
+  大于1，那么可能存在前一个批次投递失败，后一个批次投递成功，随后第一个批次retry成功，导致消息的顺序错乱。所以对于需要严格保证消息有序的场景，需要把`max.in.flight.requests.per.connection`
+  设置为1，即必须收到上一个响应之后才可以继续向Kafka发送消息，而retries的设置：可以是0也可以非0，进行重试。
+
+#### 3.5 自定义序列化器
+
+#### 3.6 分区
+
+- 可以设置消息的ID，**且只能为字符串！**
+    - 如果没有设置ID，即null且使用的是默认的分区器，那么Kafka会自动以轮询的方式将消息投递到Partition
+    - 如果设置了ID
+        - 默认的分区器：根据ID的散列值（Kafka可以保证同一个ID的散列值不变，即被投递到同一个Partition。但是如果分区数量发生了变化则不保证）
+        - 自定义分区器： 自定义的规则
+    
+
+
+
+### TODO
+- 自定义分区器 

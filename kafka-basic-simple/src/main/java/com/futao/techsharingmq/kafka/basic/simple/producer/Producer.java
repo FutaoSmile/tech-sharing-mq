@@ -7,7 +7,6 @@ import org.apache.kafka.clients.producer.*;
 import java.util.HashMap;
 import java.util.concurrent.BrokenBarrierException;
 import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.CyclicBarrier;
 import java.util.concurrent.ExecutionException;
 
 /**
@@ -35,6 +34,13 @@ public class Producer {
         configs.put(ProducerConfig.RETRIES_CONFIG, "3");
         // 消息重试时间间隔
         configs.put(ProducerConfig.RETRY_BACKOFF_MS_CONFIG, "100");
+        // 将批次消息发送到kafka之前等待的时间，或者批次满了就发送
+        configs.put(ProducerConfig.LINGER_MS_CONFIG, 100);
+        // 客户端-线程名也会设置成一样的
+        configs.put(ProducerConfig.CLIENT_ID_CONFIG, "order-producer");
+        // 在接收到服务器响应之前可以发送多少个消息
+        configs.put(ProducerConfig.MAX_IN_FLIGHT_REQUESTS_PER_CONNECTION, 1);
+
         // Producer
         KafkaProducer<String, String> kafkaProducer = new KafkaProducer<>(configs);
 
