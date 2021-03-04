@@ -1,0 +1,8 @@
+POST http://127.0.0.1:9898/order
+Content-Type: application/json
+
+{
+  "id": 1,
+  "userId": 1,
+  "totalPrice": 99.8
+}

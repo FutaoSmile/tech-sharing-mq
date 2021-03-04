@@ -33,6 +33,10 @@
 - [ SpringBoot如何做到自动帮我们创建RabbitMQ的Queue和Exchange的？ ](https://mp.weixin.qq.com/s?__biz=MzI4NjQyMDkyNg==&mid=2247483913&idx=1&sn=9eb8f64a140450c28205a57d8166ffd7&chksm=ebdc78d8dcabf1ce5ac41b8b9e703d32d42b35f2e30b75f767fc6c95f01637c2b1c95befebe4&scene=178&cur_album_id=1355248263913472000#rd)
 - [RabbitMQ文章合集](https://mp.weixin.qq.com/mp/appmsgalbum?__biz=MzI4NjQyMDkyNg==&action=getalbum&album_id=1355248263913472000&scene=173&from_msgid=2247483871&from_itemidx=1&count=3#wechat_redirect)
 
+### # 课程
+- [新RabbitMQ精讲提升工程实践能力 培养架构思维](https://coding.imooc.com/class/461.html)
+- [RabbitMQ消息中间件技术精讲](https://coding.imooc.com/class/262.html)
+
 ### # 书籍
 
 - 《RabbitMQ实战指南》-朱忠华
