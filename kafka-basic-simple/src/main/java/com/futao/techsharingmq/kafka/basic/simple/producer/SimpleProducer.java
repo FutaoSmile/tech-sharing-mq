@@ -16,7 +16,7 @@ import java.util.concurrent.ExecutionException;
  * @date 2021/3/4
  */
 @Slf4j
-public class Producer {
+public class SimpleProducer {
     public static void main(String[] args) throws ExecutionException, InterruptedException, BrokenBarrierException {
         CountDownLatch countDownLatch = new CountDownLatch(1);
 
