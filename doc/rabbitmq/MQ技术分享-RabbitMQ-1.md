@@ -67,7 +67,7 @@ RabbitMQ是采用Erlang语言（所以在安装RabbitMQ之前需要安装Erlang�
 * **Producer**：生产者：生产消息，将消息推送到Exchange。生产者永远只与Exchange交互。
 * **Consumer**：消费者：消费消息，从Queue中get消息或者监听Queue推动过来的消息。永远只与Queue交互。
 
-![image-20210413084113800](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20210413084113800.png)
+![image-20210413084113800](..\img\image-20210413084113800.png)
 
 * 运转流程:
   * 生产者：
@@ -129,7 +129,7 @@ RabbitMQ是采用Erlang语言（所以在安装RabbitMQ之前需要安装Erlang�
 
 > 目标：订单（大定，小定）。存在三个消费者分别监听小定、大定、和所有订单。
 
-![image-20210413110101572](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20210413110101572.png)
+![image-20210413110101572](..\img\image-20210413110101572.png)
 
 
 
@@ -143,21 +143,21 @@ RabbitMQ是采用Erlang语言（所以在安装RabbitMQ之前需要安装Erlang�
 
 * 定义
 
-![image-20210413114715347](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20210413114715347.png)
+![image-20210413114715347](..\img\image-20210413114715347.png)
 
 * 生产
 
-![image-20210413114731724](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20210413114731724.png)
+![image-20210413114731724](..\img\image-20210413114731724.png)
 
 * 消费
 
   * 拉模式
 
-  ![image-20210413114747734](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20210413114747734.png)
+  ![image-20210413114747734](..\img\image-20210413114747734.png)
 
   * 推模式
 
-  ![image-20210413115211228](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20210413115211228.png)
+  ![image-20210413115211228](..\img\image-20210413115211228.png)
 
 
 
@@ -413,9 +413,9 @@ RabbitMQ是采用Erlang语言（所以在安装RabbitMQ之前需要安装Erlang�
 
 ### 8. 插件-Web端管理后台
 
-![image-20210413120344050](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20210413120344050.png)
+![image-20210413120344050](..\img\image-20210413120344050.png)
 
-![image-20210413120414842](C:\Users\Administrator\AppData\Roaming\Typora\typora-user-images\image-20210413120414842.png)
+![image-20210413120414842](..\img\image-20210413120414842.png)
 
 ### 9. 其他
 
