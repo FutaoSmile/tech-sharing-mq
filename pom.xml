@@ -25,6 +25,9 @@
         <module>rabbit-reliable-delivery</module>
         <module>rabbit-rpc-framework</module>
         <module>rabbit-consumer-auto</module>
+        <module>active-basic</module>
+        <module>kafka-basic</module>
+        <module>kafka-basic-simple</module>
     </modules>
 
     <properties>
@@ -49,6 +52,11 @@
                 <groupId>com.futao</groupId>
                 <artifactId>common</artifactId>
                 <version>0.0.1-SNAPSHOT</version>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.kafka</groupId>
+                <artifactId>spring-kafka</artifactId>
+                <version>2.6.6</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
