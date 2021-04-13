@@ -51,12 +51,12 @@ public class SimpleDemo {
         }, "producer").start();
 
         // 创建2个消费者
-        for (int i = 0; i < 2; i++) {
+        for (int i = 0; i < 1; i++) {
             new Thread(() -> {
                 try {
                     // 创建消费者通道
                     Channel consumerChannel = connection.createChannel();
-                    // 每次缓存的消息数量
+                    // 每次拉取的消息数量
                     consumerChannel.basicQos(1);
                     DefaultConsumer consumer = new DefaultConsumer(consumerChannel) {
                         @Override
@@ -73,6 +73,5 @@ public class SimpleDemo {
                 }
             }, "consumer-" + i).start();
         }
-
     }
 }

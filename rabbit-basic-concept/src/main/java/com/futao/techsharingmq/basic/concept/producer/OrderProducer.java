@@ -28,7 +28,7 @@ public class OrderProducer {
     @Autowired
     private Exchange orderExchangeTopic;
 
-//    @PostConstruct
+    @PostConstruct
     public void send() {
         log.info("开始推送订单消息");
         int msgCount = 1_00;

@@ -14,6 +14,19 @@ import org.springframework.context.annotation.Configuration;
 public class Declare {
 
     /**
+     * 定义持久化topic交换机
+     *
+     * @return
+     */
+    @Bean
+    public Exchange orderExchangeTopic() {
+        return ExchangeBuilder
+                .topicExchange("order-exchange-topic")
+                .durable(true)
+                .build();
+    }
+
+    /**
      * 定义预订订单持久化队列
      *
      * @return
@@ -49,18 +62,6 @@ public class Declare {
                 .build();
     }
 
-    /**
-     * 定义持久化topic交换机
-     *
-     * @return
-     */
-    @Bean
-    public Exchange orderExchangeTopic() {
-        return ExchangeBuilder
-                .topicExchange("order-exchange-topic")
-                .durable(true)
-                .build();
-    }
 
     /**
      * preOrder队列与交换机进行绑定
