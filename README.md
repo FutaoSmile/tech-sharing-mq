@@ -4,6 +4,10 @@
     * https://gitee.com/FutaoSmile/tech-sharing-mq
     * https://github.com/FutaoSmile/tech-sharing-mq
 
+### # 培训文档汇总
+
+- [MQ技术分享-RabbitMQ-1.md](./doc/rabbitmq/MQ技术分享-RabbitMQ-1.md)
+
 ### 一、项目结构
 
 * [common](./common)为公共依赖的一个模板，存放通用的Model。
@@ -18,6 +22,7 @@
 * [rabbit-basic-concept-simple](./rabbit-basic-concept-simple) 基础概念，不使用SpringBoot
 * [rabbit-reliable-delivery](./rabbit-reliable-delivery) 消息可靠投递
 * [rabbit-rpc-framework](./rabbit-rpc-framework) 基于RabbitMQ的RPC框架-demo
+
 - [rabbit-consumer-auto](./rabbit-consumer-auto) 消费者自动签收-自动重试
 
 ### # 其他
@@ -34,6 +39,7 @@
 - [RabbitMQ文章合集](https://mp.weixin.qq.com/mp/appmsgalbum?__biz=MzI4NjQyMDkyNg==&action=getalbum&album_id=1355248263913472000&scene=173&from_msgid=2247483871&from_itemidx=1&count=3#wechat_redirect)
 
 ### # 课程
+
 - [新RabbitMQ精讲提升工程实践能力 培养架构思维](https://coding.imooc.com/class/461.html)
 - [RabbitMQ消息中间件技术精讲](https://coding.imooc.com/class/262.html)
 
