@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
  * RabbitTemplate-Bean增强
  *
  * @author ft <futao@mysteel.com>
- * @date 2021/2/20
+ * @date 2021/5/20
  */
 @Slf4j
 @Component
@@ -32,7 +32,8 @@ public class RabbitTemplateEnhance implements BeanPostProcessor {
                     log.error("消息被退回:{}", returnedMessage);
                 }
             });
-            // 生产者确认
+
+            // 生产者确认 - 消息被正确投递和路由
             rabbitTemplate.setConfirmCallback(new RabbitTemplate.ConfirmCallback() {
                 @Override
                 public void confirm(CorrelationData correlationData, boolean ack, String cause) {

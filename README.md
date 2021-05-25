@@ -1,8 +1,8 @@
 ## # RabbitMQ技术分享
 
 * 项目维护仓库:
-    * https://gitee.com/FutaoSmile/tech-sharing-mq
-    * https://github.com/FutaoSmile/tech-sharing-mq
+    * [https://gitee.com/FutaoSmile/tech-sharing-mq](https://gitee.com/FutaoSmile/tech-sharing-mq)
+    * [https://github.com/FutaoSmile/tech-sharing-mq](https://github.com/FutaoSmile/tech-sharing-mq)
 
 ### # 培训文档汇总
 
