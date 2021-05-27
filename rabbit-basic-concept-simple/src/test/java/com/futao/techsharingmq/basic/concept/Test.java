@@ -18,6 +18,10 @@ import java.util.concurrent.TimeoutException;
  * @date 2021/4/13
  */
 public class Test {
+
+    public static void main(String[] args) throws InterruptedException, NoSuchAlgorithmException, KeyManagementException, TimeoutException, URISyntaxException, IOException {
+        test1();
+    }
     /**
      * 测试在未指定exchange的情况下，会默认使用`(AMQP default)`作为exchange，routingKey会作为queueName
      *
@@ -28,8 +32,8 @@ public class Test {
      * @throws TimeoutException
      * @throws InterruptedException
      */
-    @org.junit.jupiter.api.Test
-    public void test1() throws NoSuchAlgorithmException, KeyManagementException, URISyntaxException, IOException, TimeoutException, InterruptedException {
+//    @org.junit.jupiter.api.Test
+    public static void test1() throws NoSuchAlgorithmException, KeyManagementException, URISyntaxException, IOException, TimeoutException, InterruptedException {
         ConnectionFactory connectionFactory = new ConnectionFactory();
         connectionFactory.setUri("amqp://futao:123456789@localhost:5672");
         connectionFactory.setVirtualHost("/tech-sharing");

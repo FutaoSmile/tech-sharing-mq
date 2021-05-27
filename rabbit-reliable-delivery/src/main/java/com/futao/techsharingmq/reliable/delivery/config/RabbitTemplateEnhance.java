@@ -1,5 +1,6 @@
 package com.futao.techsharingmq.reliable.delivery.config;
 
+import com.futao.techsharingmq.reliable.delivery.complete.entity.MessageRecordEntity;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.AmqpException;
 import org.springframework.amqp.core.Message;
@@ -51,6 +52,13 @@ public class RabbitTemplateEnhance implements BeanPostProcessor {
                 @Override
                 public Message postProcessMessage(Message message) throws AmqpException {
                     log.info("消息发送之前");
+                    String msgBody = new String(message.getBody());
+
+                    // 入库
+                    MessageRecordEntity.builder()
+                            .build()
+                            .insert();
+
                     return message;
                 }
             });

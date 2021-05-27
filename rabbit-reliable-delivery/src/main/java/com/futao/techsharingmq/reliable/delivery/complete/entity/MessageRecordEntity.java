@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.baomidou.mybatisplus.extension.activerecord.Model;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -18,12 +19,13 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 @TableName("message_record")
+@Builder
 public class MessageRecordEntity extends Model<MessageRecordEntity> {
     /**
      * 主键
      */
-    @TableId(type = IdType.AUTO)
-    private int id;
+    @TableId(type = IdType.ASSIGN_UUID)
+    private String id;
     /**
      * 消息体
      */

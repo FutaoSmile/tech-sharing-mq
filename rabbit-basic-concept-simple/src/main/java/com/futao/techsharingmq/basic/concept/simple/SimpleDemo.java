@@ -40,8 +40,7 @@ public class SimpleDemo {
                 AMQP.BasicProperties basicProperties = new AMQP.BasicProperties();
                 try {
                     // 发送消息
-                    channel.basicPublish("simple-exchange",
-                            "simple.routing.key." + i, true, false,
+                    channel.basicPublish("simple-exchange", "simple.routing.key." + i, true, false,
                             basicProperties, String.valueOf(i).getBytes(StandardCharsets.UTF_8));
                     log.info("发送消息:[{}]", i);
                 } catch (IOException e) {
@@ -51,11 +50,12 @@ public class SimpleDemo {
         }, "producer").start();
 
         // 创建2个消费者
-        for (int i = 0; i < 1; i++) {
+        for (int i = 0; i < 10; i++) {
             new Thread(() -> {
                 try {
                     // 创建消费者通道
                     Channel consumerChannel = connection.createChannel();
+                    //AMQP.Queue.DeclareOk declareOk = consumerChannel.queueDeclarePassive("");
                     // 每次拉取的消息数量
                     consumerChannel.basicQos(1);
                     DefaultConsumer consumer = new DefaultConsumer(consumerChannel) {
@@ -67,7 +67,11 @@ public class SimpleDemo {
                     // 推模式
                     consumerChannel.basicConsume("simple-queue", true, consumer);
                     // 拉模式
-//                    consumerChannel.basicGet("simple-queue",true);
+                    GetResponse getResponse;
+                    while (true) {
+                        consumerChannel.basicGet("simple-queue", true);
+                        //...
+                    }
                 } catch (Exception e) {
                     e.printStackTrace();
                 }

@@ -43,10 +43,10 @@ RabbitMQ是采用Erlang语言（所以在安装RabbitMQ之前需要安装Erlang�
 * **Server/Broker**：RabbitMQ服务器，接收客户端连接，实现AMQP的服务器实体。
 * **Connection**：连接，应用程序与Broker的TCP网络连接。
 * **Channel**：信道
-* 应用程序基于信道Channel与RabbitMQ通信，信道是建立在真实存在的TCP连接之上的，一旦TCP连接打开，应用程序就可以创建Channel信道。
-* 为什么需要信道:
-  
-  * 因为对于系统来说，TCP连接的创建和销毁需要昂贵的开销
+  * 应用程序基于信道Channel与RabbitMQ通信，信道是建立在真实存在的TCP连接之上的，一旦TCP连接打开，应用程序就可以创建Channel信道。
+  * 为什么需要信道:
+
+    * 因为对于系统来说，TCP连接的创建和销毁需要昂贵的开销
     * 且OS能提供的TCP连接本身就是有限的
 * **Message**：消息。服务器和应用程序之间传递的数据，本质上就是一段数据，由Properties和Body组成。Body内为实际要传递的消息。
 * **Exchange**：交换机。接收消息，根据路由键转发消息到绑定的队列。
@@ -57,9 +57,9 @@ RabbitMQ是采用Erlang语言（所以在安装RabbitMQ之前需要安装Erlang�
   * **direct**: 完全匹配路由键
   
   * **topic**: 路由键通配符(我们将被英文句点号“`.` ”分隔开的每一段独立的字符串称为一个单词)
-  * `*`匹配一个单词
-    
-  * `#` 匹配零个或多个单词
+    * `*`匹配一个单词
+      
+    * `#` 匹配零个或多个单词
 * **Binding**：Exchange和Queue之间的绑定关系，binding中可以指定routing key。
 * **Routing key**：路由键，Exchange可根据这个值将消息路由到不同的Queue。
 * **Queue**：也称为Message Queue，消息队列，保存消息并将它们发送给消费者。（Q: 拉,推?）
@@ -422,3 +422,4 @@ RabbitMQ是采用Erlang语言（所以在安装RabbitMQ之前需要安装Erlang�
 * 代码仓库：
   * https://gitee.com/FutaoSmile/tech-sharing-mq
   * https://github.com/FutaoSmile/tech-sharing-mq
+

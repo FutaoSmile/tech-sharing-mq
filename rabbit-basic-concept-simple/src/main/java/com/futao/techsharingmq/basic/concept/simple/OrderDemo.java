@@ -39,31 +39,33 @@ public class OrderDemo {
         channel.queueBind("official-order-queue", "order-exchange-topic", "order.official");
         channel.queueBind("all-order-queue", "order-exchange-topic", "order.*");
 
-        // 生产者发送消息
-        new Thread(() -> {
-            // 小定
-            for (int i = 0; i < 10; i++) {
-                try {
-                    String msg = "preOrder-" + i;
-                    channel.basicPublish("order-exchange-topic", "order.pre", new AMQP.BasicProperties(), msg.getBytes(StandardCharsets.UTF_8));
-                    log.info("消息[{}]投递成功", msg);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-            // 大定
-            for (int i = 0; i < 10; i++) {
-                try {
-                    String msg = "officialOrder-" + i;
-                    channel.basicPublish("order-exchange-topic", "order.official", new AMQP.BasicProperties(), msg.getBytes(StandardCharsets.UTF_8));
-                    log.info("消息[{}]投递成功", msg);
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }, "producer").start();
+        log.info("-----");
 
-        //byGet(connection);
+        // 生产者发送消息
+//        new Thread(() -> {
+//            // 小定
+//            for (int i = 0; i < 10; i++) {
+//                try {
+//                    String msg = "preOrder-" + i;
+//                    channel.basicPublish("order-exchange-topic", "order.pre", new AMQP.BasicProperties(), msg.getBytes(StandardCharsets.UTF_8));
+//                    log.info("消息[{}]投递成功", msg);
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//            // 大定
+//            for (int i = 0; i < 10; i++) {
+//                try {
+//                    String msg = "officialOrder-" + i;
+//                    channel.basicPublish("order-exchange-topic", "order.official", new AMQP.BasicProperties(), msg.getBytes(StandardCharsets.UTF_8));
+//                    log.info("消息[{}]投递成功", msg);
+//                } catch (IOException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        }, "producer").start();
+
+//        byGet(connection);
         byConsumer(connection);
     }
 
