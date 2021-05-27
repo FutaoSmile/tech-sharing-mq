@@ -46,13 +46,13 @@ public class Demo {
             }
         });
 
-// 监听被return的消息
-channel.addReturnListener(new ReturnCallback() {
-    @Override
-    public void handle(Return returnMessage) {
-        log.info("消息被退回:{}", returnMessage);
-    }
-});
+        // 监听被return的消息
+        channel.addReturnListener(new ReturnCallback() {
+            @Override
+            public void handle(Return returnMessage) {
+                log.info("消息被退回:{}", returnMessage);
+            }
+        });
 
         channel.addConfirmListener(new ConfirmListener() {
             @Override
